@@ -63,6 +63,7 @@ public class OrdersController {
         Order order = new Order();
         BeanUtils.copyProperties(orderDTO, order);
         order.setDate(date);
+        order.setStatus("PENDING");
 
         if (ordersService.saveOrder(order) == 200) {
             log.info("order created successfully");

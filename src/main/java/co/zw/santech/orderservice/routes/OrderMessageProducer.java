@@ -24,7 +24,7 @@ public class OrderMessageProducer {
 
     public void dressOrderPayload(Order order) {
         try {
-            producerTemplate.sendBody(":queue:orders.queue", gson.toJson(order));
+            producerTemplate.sendBody("activemq:queue:orders.queue", gson.toJson(order));
             log.info("Message sent to queue successfully {}", order);
         } catch (Exception e) {
             log.error("Could not send Payload to Queue! {}", e.getMessage());

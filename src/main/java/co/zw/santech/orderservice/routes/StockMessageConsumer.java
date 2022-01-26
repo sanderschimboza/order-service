@@ -27,7 +27,8 @@ public class StockMessageConsumer extends RouteBuilder {
                 .process(exchange -> {
                     Order order = exchange.getIn().getBody(Order.class);
                     log.info("Received Order Update Payload {}", order);
-                    ordersService.processStockOrder(order);
+                    if (ordersService.processStockOrder(order) != null) {
+                     }
                     exchange.getMessage().setHeader(Exchange.HTTP_RESPONSE_CODE,
                             HttpStatus.ACCEPTED);
                 });
